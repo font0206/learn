@@ -9,6 +9,8 @@
 
     <include file="db/changelog/changes/001-create-users-table.xml"/>
     <include file="db/changelog/changes/003-create-rbac.xml"/>
+    <include file="/db/changelog/changes/006-create-user-session-table.xml"/>
+    <include file="/db/changelog/changes/007-insert-default-roles.xml"/>
 
 
 

@@ -29,6 +29,10 @@
                     type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+            <column name="description"
+                    type="VARCHAR(255)">
+
+            </column>
             <column name="created_at" type="TIMESTAMP"/>
             <column name="updated_at" type="TIMESTAMP"/>
             <column name="created_by" type="VARCHAR(100)"/>
@@ -81,6 +85,8 @@
                     type="BIGINT">
                 <constraints nullable="false"/>
             </column>
+            <column name="assigned_at" type="TIMESTAMP"/>
+            <column name="assigned_by" type="VARCHAR(100)"/>
 
         </createTable>
 
@@ -119,7 +125,8 @@
                     type="BIGINT">
                 <constraints nullable="false"/>
             </column>
-
+            <column name="assigned_at" type="TIMESTAMP"/>
+            <column name="assigned_by" type="VARCHAR(100)"/>
         </createTable>
 
         <addPrimaryKey
