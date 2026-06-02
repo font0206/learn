@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!--create ROLE -->
+    <changeSet id="002-create-roles" author="phong">
+
+        <createTable tableName="roles">
+
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+
+            <column name="code"
+                    type="VARCHAR(50)">
+                <constraints nullable="false"
+                             unique="true"/>
+            </column>
+
+            <column name="name"
+                    type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(100)"/>
+            <column name="updated_by" type="VARCHAR(100)"/>
+        </createTable>
+
+    </changeSet>
+
+    <!-- PERMISSIONS -->
+    <changeSet id="003-create-permissions" author="phong">
+
+        <createTable tableName="permissions">
+
+            <column name="id"
+                    type="BIGINT"
+                    autoIncrement="true">
+                <constraints primaryKey="true"
+                             nullable="false"/>
+            </column>
+
+            <column name="code"
+                    type="VARCHAR(100)">
+                <constraints nullable="false"
+                             unique="true"/>
+            </column>
+
+            <column name="name"
+                    type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="created_by" type="VARCHAR(100)"/>
+            <column name="updated_by" type="VARCHAR(100)"/>
+        </createTable>
+
+    </changeSet>
+
+    <!-- USER_ROLES -->
+    <changeSet id="004-create-user-roles" author="phong">
+
+        <createTable tableName="user_roles">
+
+            <column name="user_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="role_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addPrimaryKey
+                tableName="user_roles"
+                columnNames="user_id,role_id"
+                constraintName="pk_user_roles"/>
+
+        <addForeignKeyConstraint
+                baseTableName="user_roles"
+                baseColumnNames="user_id"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_user_roles_user"/>
+
+        <addForeignKeyConstraint
+                baseTableName="user_roles"
+                baseColumnNames="role_id"
+                referencedTableName="roles"
+                referencedColumnNames="id"
+                constraintName="fk_user_roles_role"/>
+
+    </changeSet>
+
+    <!-- ROLE_PERMISSIONS -->
+    <changeSet id="005-create-role-permissions" author="phong">
+
+        <createTable tableName="role_permissions">
+
+            <column name="role_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="permission_id"
+                    type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <addPrimaryKey
+                tableName="role_permissions"
+                columnNames="role_id,permission_id"
+                constraintName="pk_role_permissions"/>
+
+        <addForeignKeyConstraint
+                baseTableName="role_permissions"
+                baseColumnNames="role_id"
+                referencedTableName="roles"
+                referencedColumnNames="id"
+                constraintName="fk_role_permissions_role"/>
+
+        <addForeignKeyConstraint
+                baseTableName="role_permissions"
+                baseColumnNames="permission_id"
+                referencedTableName="permissions"
+                referencedColumnNames="id"
+                constraintName="fk_role_permissions_permission"/>
+
+    </changeSet>
+
+</databaseChangeLog>
