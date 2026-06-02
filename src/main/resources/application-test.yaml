@@ -1,0 +1,20 @@
+spring:
+  liquibase:
+    enabled: false
+  # Enable H2 Console (Access at http://localhost:${PORT}/h2-console)
+  h2.console:
+    enabled: true
+    path: /h2-console
+
+  # Datasource Configuration
+  datasource:
+    url: jdbc:h2:mem:f4de52cc-a73a-4080-815e-527b1c2e56fb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+
+  # JPA / Hibernate Settings
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    ddl-auto: update
+    show-sql: true
