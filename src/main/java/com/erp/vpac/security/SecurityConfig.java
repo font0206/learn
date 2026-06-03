@@ -39,9 +39,9 @@ public class SecurityConfig {
                         .ignoringRequestMatchers("/h2-console/**")
                         .disable()
                 )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers(PUBLIC_ENDPOINTS).permitAll()
