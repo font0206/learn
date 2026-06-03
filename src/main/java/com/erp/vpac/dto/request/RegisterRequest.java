@@ -1,4 +1,4 @@
-package com.erp.vpac.dto;
+package com.erp.vpac.dto.request;
 
 public record RegisterRequest(
         String username,

@@ -3,6 +3,9 @@ package com.erp.vpac.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "roles")
 @Getter
@@ -10,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Role extends BaseEntity{
+public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +26,8 @@ public class Role extends BaseEntity{
 
     @Column(length = 255)
     private String description;
+    @OneToMany(mappedBy = "role")
+    @Builder.Default
+    private List<RolePermission> rolePermissions = new ArrayList<>();
 
 }

@@ -1,4 +1,5 @@
 package com.erp.vpac.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -21,7 +22,7 @@ public class UserSession extends BaseEntity {
 
     @Column(name = "expires_at")
     private LocalDateTime expiresAt;
-
+    @Builder.Default
     private Boolean revoked = false;
 
     @ManyToOne(fetch = FetchType.LAZY)
